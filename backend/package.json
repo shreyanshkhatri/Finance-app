@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "test": "jest",
     "build": "tsc"
   },

@@ -8,7 +8,9 @@ const config = {
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/user" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.REACT_APP_BACKEND_URL}/user`,
+  }),
   endpoints: (builder) => ({
     login: builder.mutation<User, { email: string; password: string }>({
       query: (user) => ({
@@ -17,7 +19,10 @@ export const authApi = createApi({
         body: user,
       }),
     }),
-    signup: builder.mutation<User, { name: string; email: string; password: string }>({
+    signup: builder.mutation<
+      User,
+      { name: string; email: string; password: string }
+    >({
       query: (newUser) => ({
         url: "/register",
         method: "POST",

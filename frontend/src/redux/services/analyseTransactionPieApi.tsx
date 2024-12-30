@@ -4,7 +4,7 @@ import { PieData } from "../../utils/interfaces/transaction";
 export const transactionApi = createApi({
   reducerPath: "transactionApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: process.env.REACT_APP_BACKEND_URL,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -29,12 +29,20 @@ export const transactionApi = createApi({
         limit?: number;
       }
     >({
-      query: ({ category, isDebit, period, customPeriodStart, customPeriodEnd, group }) => {
+      query: ({
+        category,
+        isDebit,
+        period,
+        customPeriodStart,
+        customPeriodEnd,
+        group,
+      }) => {
         const params = new URLSearchParams();
         if (category) params.append("category", category);
         if (isDebit !== undefined) params.append("isDebit", isDebit.toString());
         if (period) params.append("period", period);
-        if (customPeriodStart) params.append("customPeriodStart", customPeriodStart);
+        if (customPeriodStart)
+          params.append("customPeriodStart", customPeriodStart);
         if (customPeriodEnd) params.append("customPeriodEnd", customPeriodEnd);
         if (group) params.append("group", group);
         return {

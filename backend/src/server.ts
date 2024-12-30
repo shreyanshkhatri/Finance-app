@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const app = express();
-const PORT = process.env.PORT ?? 5000;
+const PORT = 5000;
 const excelRoutes = require('./routes/excelRoutes');
 const transactionRoutes = require('./routes/transactionRoutes');
 const morgan = require('morgan');
@@ -27,6 +27,6 @@ app.get('/', (req: Request, res: Response) => {
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, '0.0.0.0', () =>
+  console.log(`Backend running on port: ${PORT}`),
+);

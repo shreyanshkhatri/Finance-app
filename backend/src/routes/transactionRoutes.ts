@@ -6,7 +6,7 @@ const authenticateToken = require('../middleware/authenticationMiddleware');
 
 const router = express.Router();
 
-router.get('/getTransactions', getTransactions);
+router.get('/getTransactions', authenticateToken, getTransactions);
 router.put('/editTransaction/:userId/:transactionId', editTransaction);
 router.delete('/deleteTransaction/:userId/:transactionId', deleteTransaction);
 module.exports = router;
